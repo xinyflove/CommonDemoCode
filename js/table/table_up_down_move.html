@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>表格数据上下移动</title>
+
+    <!-- Bootstrap -->
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 引入字体 -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="test.css" />
+  </head>
+  <body class="main-body">
+    
+    <div class="container">
+    	<table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>语文</th>
+            <th>数据</th>
+            <th>英语</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        <tr>
+            <td>小明</td>
+            <td>男</td>
+            <td>90</td>
+            <td>95</td>
+            <td>85</td>
+            <td>
+                <a href="javascript:;" class="sort_up sort_opt" data-id="1" data-opt="up">
+                	<i class="fa fa-arrow-circle-up"></i>上移
+                </a>
+                &nbsp;
+                <a href="javascript:;" class="sort_down sort_opt" data-id="1" data-opt="down">
+                	<i class="fa fa-arrow-circle-down"></i>下移
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>小红</td>
+            <td>女</td>
+            <td>91</td>
+            <td>93</td>
+            <td>90</td>
+            <td>
+                <a href="javascript:;" class="sort_up sort_opt" data-id="2" data-opt="up">
+                	<i class="fa fa-arrow-circle-up"></i>上移
+                </a>
+                &nbsp;
+                <a href="javascript:;" class="sort_down sort_opt" data-id="2" data-opt="down">
+                	<i class="fa fa-arrow-circle-down"></i>下移
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>小刚</td>
+            <td>男</td>
+            <td>85</td>
+            <td>90</td>
+            <td>95</td>
+            <td>
+                <a href="javascript:;" class="sort_up sort_opt" data-id="3" data-opt="up">
+                	<i class="fa fa-arrow-circle-up"></i>上移
+                </a>
+                &nbsp;
+                <a href="javascript:;" class="sort_down sort_opt" data-id="3" data-opt="down">
+                	<i class="fa fa-arrow-circle-down"></i>下移
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>小丽</td>
+            <td>女</td>
+            <td>95</td>
+            <td>92</td>
+            <td>87</td>
+            <td>
+                <a href="javascript:;" class="sort_up sort_opt" data-id="4" data-opt="up">
+                	<i class="fa fa-arrow-circle-up"></i>上移
+                </a>
+                &nbsp;
+                <a href="javascript:;" class="sort_down sort_opt" data-id="4" data-opt="down">
+                	<i class="fa fa-arrow-circle-down"></i>下移
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+		$('table').on('click','.sort_opt',function (e) {
+	        var currObj = $(this);
+	        var id = currObj.data('id');
+	        var opt = currObj.data('opt');
+	        var trObj = currObj.parents('tr');
+	        var currHtml = '<tr>'+trObj.html()+'</tr>';
+	
+	        if(opt == 'up')
+	        {
+	            var prevObj = trObj.prev();
+	            if(prevObj.length)
+	            {
+	                trObj.remove();
+                    prevObj.before(currHtml);
+	            }
+	        }
+	        else if(opt == 'down')
+	        {
+	            var nextObj = trObj.next();
+	            if(nextObj.length)
+	            {
+	                trObj.remove();
+                    nextObj.after(currHtml);
+	            }
+	        }
+	    });
+	</script>
+  </body>
+</html>
