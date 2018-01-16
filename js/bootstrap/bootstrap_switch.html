@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 开关操作</title>
+
+    <!-- Bootstrap3 -->
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 引入字体 -->
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 引入Bootstrap3-switch -->
+    <link href="https://cdn.bootcss.com/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+  </head>
+  <body class="main-body">
+    
+    <div class="container">
+    	<table class="table table-bordered table-striped">
+	        <thead>
+	        <tr>
+	            <th>NO.</th>
+	            <th>挂件名称</th>
+	            <th>状态</th>
+	        </tr>
+	        </thead>
+	        
+	        <tbody>
+	        <tr>
+	            <td>1</td>
+	            <td>挂件名称1</td>
+	            <td>
+	            	<input name="status" type="checkbox" data-id="1" data-error="0" checked="checked">
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>2</td>
+	            <td>挂件名称2</td>
+	            <td>
+	            	<input name="status" type="checkbox" data-id="2" data-error="0">
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>3</td>
+	            <td>挂件名称3</td>
+	            <td>
+	            	<input name="status" type="checkbox" data-id="3" data-error="1" checked="checked">
+	            </td>
+	        </tr>
+	        <tr>
+	            <td>4</td>
+	            <td>挂件名称4</td>
+	            <td>
+	            	<input name="status" type="checkbox" data-id="4" data-error="1">
+	            </td>
+	        </tr>
+	        </tbody>
+	    </table>
+	    
+	    <div>
+	    	其他配置参考:https://github.com/Bttstrp/bootstrap-switch
+	    </div>
+    </div>
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- bootstrap-switch -->
+    <script src="https://cdn.bootcss.com/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js"></script>
+	
+	<script>
+	    $('[name="status"]').bootstrapSwitch({
+	        onText:"启用",//开启文字
+	        offText:"禁用",//关闭文字
+	        size:"mini",//大小,参数:null, 'mini', 'small', 'normal', 'large'
+	        onSwitchChange:function(event,state){
+	            var id = $(this).data('id');
+	            var error = $(this).data('error');
+	            if(state==true){
+	            	if(error == 0)
+	            	{
+	            		alert('id为'+id+'的挂件启用成功!');
+	            		return true;
+	            	}
+	                alert('id为'+id+'的挂件启用失败!');
+	                return false;
+	            }else{
+	            	if(error == 0)
+	            	{
+	            		alert('id为'+id+'的挂件禁用成功!');
+	            		return true;
+	            	}
+	                alert('id为'+id+'的挂件禁用失败!');
+	                return false;
+	            }
+	        }
+	    })
+	</script>
+  </body>
+</html>
